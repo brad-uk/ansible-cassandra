@@ -1,0 +1,34 @@
+---
+- name: create_droplet
+  digital_ocean: >
+      state=present
+      ssh_key_ids={{key_result.ssh_key.id}}
+      command=droplet
+      name={{item.name}}
+      size_id=66
+      region_id={{item.region}}
+      image_id={{item.image}}
+      wait_timeout=500
+      unique_name=true
+      private_networking=true
+      virtio=true
+  with_items: droplets
+  register: droplet
+
+- name: add to /etc/hosts
+  sudo: yes
+#regexp below matches hostname only at end of line
+  lineinfile: dest=/etc/hosts regexp="{{item.droplet.name}}$" line="{{item.droplet.ip_address}} {{item.droplet.name}}"
+  with_items: droplet.results
+
+- name: remove hostname from known_hosts
+  shell: ssh-keygen -R {{item.droplet.name}}
+  with_items: droplet.results
+
+- name: remove ip addr from known_hosts
+  shell: ssh-keygen -R {{item.droplet.ip_address}}
+  with_items: droplet.results
+
+- name: remove both from known hosts
+  shell: ssh-keygen -R {{item.droplet.name}},{{item.droplet.ip_address}}
+  with_items: droplet.results

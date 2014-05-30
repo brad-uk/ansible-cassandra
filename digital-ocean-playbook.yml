@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+
+  vars_files:
+    - vars/deploy-nodes.yml
+
+#note: for digital ocean tasks must set env vars DO_API_KEY & DO_CLIENT_ID
+
+  tasks:
+    - include: tasks/create-key.yml
+    - include: tasks/create-droplet.yml droplets={{droplets}}
+    - include: tasks/known-hosts.yml droplets={{droplets}}
+
+- hosts: ocean
+  remote_user: root
+  gather_facts: False
+
+  tasks:
+    - include: tasks/modify-node-hosts-file.yml
+    - include: tasks/oracle-java-install.yml
+    - include: tasks/cassandra-install.yml

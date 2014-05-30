@@ -1,0 +1,10 @@
+---
+- name: add_key
+  digital_ocean: >
+      state=present
+      command=ssh
+      name=key-ansible
+      ssh_pub_key="{{ lookup('file', '~/.ssh/ocean-test-id_rsa.pub') }}"
+  register: key_result
+
+- debug: var=key_result.ssh_key.id

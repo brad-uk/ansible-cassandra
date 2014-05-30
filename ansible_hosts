@@ -1,0 +1,8 @@
+[workstation]
+localhost
+
+[ocean]
+cass-am
+cass-ny
+cass-sf
+cass-sg

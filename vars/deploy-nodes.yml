@@ -1,0 +1,15 @@
+---
+droplets:
+  - name: cass-am 
+    region: 5
+    image: 3445812
+  - name: cass-ny
+    region: 4
+    image: 3445812
+  - name: cass-sf
+    region: 3
+    image: 3445812
+  - name: cass-sg
+    region: 6
+    image: 3445812
+

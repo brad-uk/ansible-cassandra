@@ -1,0 +1,20 @@
+---
+#- name: known hosts
+#  command: ssh-keygen -f "~/.ssh/known_hosts" -R {{item.name}}
+#  with_items: droplets
+
+#- name: remove hostname from known_hosts
+#  shell: ssh-keygen -R {{item.droplet.name}}
+#  with_items: droplet.results
+
+#- name: remove ip addr from known_hosts
+#  shell: ssh-keygen -R {{item.droplet.ip_address}}
+#  with_items: droplet.results
+
+#- name: remove hostname from known_hosts
+#  shell: ssh-keygen -R {{item.name}}
+#  with_items: droplets
+
+- name: add key to known_hosts
+  shell: ssh-keyscan -H {{item.name}} >> ~/.ssh/known_hosts
+  with_items: droplets

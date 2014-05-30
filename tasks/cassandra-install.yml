@@ -1,0 +1,19 @@
+---
+- name: add datastax repository
+  shell: echo "deb http://debian.datastax.com/community stable main" | sudo tee -a /etc/apt/sources.list.d/cassandra.sources.list
+
+- name: add datastax repo key
+  shell: curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
+
+- name: install cassandra
+  apt: pkg=dsc20 state=latest update-cache=yes force=yes
+
+- name: template cassandra config
+  sudo: yes
+  template: 
+    src=../cassandra-templates/cassandra.yaml
+    dest=/etc/cassandra/cassandra.yaml
+
+- name: start cassandra
+  shell: nohup cassandra & 
+    creates=~/nohup.out

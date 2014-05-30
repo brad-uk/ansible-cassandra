@@ -1,0 +1,6 @@
+---
+
+- name: add all nodes to /etc/hosts
+  sudo: yes
+  lineinfile: dest=/etc/hosts regexp="{{item.droplet.name}}$" line="{{item.droplet.ip_address}} {{item.droplet.name}}"
+  with_items: hostvars.localhost.droplet.results
