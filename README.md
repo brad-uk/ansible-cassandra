@@ -9,10 +9,10 @@ Also, the envirnment vars DO_API_KEY & DO_CLIENT_ID must be set to allow the ans
 
 On successful execution you'll be left with four Cassandra nodes:
 
-cass-am - Amsterdam
-cass-ny - New York
-cass-sf - San Francisco
-cass-sg - Singapore
+* cass-am - Amsterdam
+* cass-ny - New York
+* cass-sf - San Francisco
+* cass-sg - Singapore
 
 Each othe the nodes is added to the hosts file locally. Each node is also added to the hosts file on each node.
 
