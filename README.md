@@ -14,7 +14,4 @@ On successful execution you'll be left with four Cassandra nodes:
 * cass-sf - San Francisco
 * cass-sg - Singapore
 
-Each othe the nodes is added to the hosts file locally. Each node is also added to the hosts file on each node.
-
-The cassandra replication factor is set to four so that data makes it to every node.
-
+Each of the the nodes is added to the hosts file locally. Each node is also has the others in it's own hosts file.
