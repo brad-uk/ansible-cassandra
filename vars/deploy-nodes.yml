@@ -2,14 +2,17 @@
 droplets:
   - name: cass-am 
     region: 5
-    image: 3445812
+    image: 6372526
   - name: cass-ny
     region: 4
-    image: 3445812
+    image: 6372526
   - name: cass-sf
     region: 3
-    image: 3445812
+    image: 6372526
   - name: cass-sg
     region: 6
-    image: 3445812
+    image: 6372526
+
+#to list all images:
+#curl -v "https://api.digitalocean.com/images/?client_id=$DO_CLIENT_ID&api_key=$DO_API_KEY&filter=global"
 

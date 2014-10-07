@@ -6,12 +6,12 @@
   shell: curl -L http://debian.datastax.com/debian/repo_key | sudo apt-key add -
 
 - name: install cassandra
-  apt: pkg=dsc20 state=latest update-cache=yes force=yes
+  apt: pkg=dsc21 state=latest update-cache=yes force=yes
 
 - name: template cassandra config
   sudo: yes
   template: 
-    src=../cassandra-templates/cassandra.yaml
+    src=../cassandra-templates/cassandra-2.1.0.yaml
     dest=/etc/cassandra/cassandra.yaml
 
 - name: start cassandra

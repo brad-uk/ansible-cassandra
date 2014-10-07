@@ -1,10 +1,22 @@
 ---
+
+- name: generate key
+  shell: 
+    cmd='ssh-keygen -t rsa -f ~/.ssh/cass-nodes-id_rsa -q -N ''""''' 
+    creates=~/.ssh/cass-nodes-id_rsa
+
+- name: run ssh agent
+  shell: "ssh-agent"
+
+- name: add key to agent
+  shell: "ssh-add ~/.ssh/cass-nodes-id_rsa"
+
 - name: add_key
   digital_ocean: >
       state=present
       command=ssh
       name=key-ansible
-      ssh_pub_key="{{ lookup('file', '~/.ssh/ocean-test-id_rsa.pub') }}"
+      ssh_pub_key="{{ lookup('file', '~/.ssh/cass-nodes-id_rsa.pub') }}"
   register: key_result
 
 - debug: var=key_result.ssh_key.id

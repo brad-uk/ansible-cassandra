@@ -1,11 +1,11 @@
 ansible-cassandra
 =================
 
-Deploy a cluster of cassandra nodes to Digital Ocean.
+Deploy a cluster of cassandra 2.1.0 nodes to Digital Ocean.
 
-Currently requires a private key located at ~/.ssh/ocean-test-id_rsa.pub. This will be uploaded to your DO account and used to initialise access to each node via SSH. It might be a good idea to have it generate a new key as part of the playbook.
+Creates a new SSH key which is uploaded to DO for use in creating the droplets. Droplets are Debian 7.0 x64, size 1gb. The 512Mb size would get killed due to OOM.
 
-Also, the envirnment vars DO_API_KEY & DO_CLIENT_ID must be set to allow the ansible tasks to talk to the DO API.
+Requires the envirnment vars DO_API_KEY & DO_CLIENT_ID be set to allow the ansible tasks to talk to the DO API (currently v1).
 
 On successful execution you'll be left with four Cassandra nodes:
 
@@ -14,7 +14,9 @@ On successful execution you'll be left with four Cassandra nodes:
 * cass-sf - San Francisco
 * cass-sg - Singapore
 
-Each othe the nodes is added to the hosts file locally. Each node is also added to the hosts file on each node.
+Each of the the nodes is added to the hosts file locally. Each node is also added to the hosts file on each node.
 
 The cassandra replication factor is set to four so that data makes it to every node.
+
+To run the playbook: ansible-playbook -K -i ansible_hosts digital-ocean-playbook.yml
 

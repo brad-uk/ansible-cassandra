@@ -5,7 +5,7 @@
       ssh_key_ids={{key_result.ssh_key.id}}
       command=droplet
       name={{item.name}}
-      size_id=66
+      size_id=63
       region_id={{item.region}}
       image_id={{item.image}}
       wait_timeout=500
@@ -14,6 +14,9 @@
       virtio=true
   with_items: droplets
   register: droplet
+
+#to list all images:
+#curl -v "https://api.digitalocean.com/images/?client_id=$DO_CLIENT_ID&api_key=$DO_API_KEY&filter=global"
 
 - name: add to /etc/hosts
   sudo: yes
