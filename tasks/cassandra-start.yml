@@ -1,0 +1,4 @@
+---
+- name: start cassandra
+  shell: service cassandra start
+

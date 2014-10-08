@@ -6,3 +6,11 @@ cass-am
 cass-ny
 cass-sf
 cass-sg
+
+[seeds]
+cass-am
+
+[non-seeds]
+cass-ny
+cass-sf
+cass-sg

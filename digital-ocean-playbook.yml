@@ -15,9 +15,23 @@
 
 - hosts: ocean
   remote_user: root
-  gather_facts: False
+  gather_facts: True
 
   tasks:
     - include: tasks/modify-node-hosts-file.yml
     - include: tasks/oracle-java-install.yml
     - include: tasks/cassandra-install.yml
+
+- hosts: seeds
+  remote_user: root
+  gather_facts: False
+
+  tasks:
+    - include: tasks/cassandra-start.yml
+
+- hosts: non-seeds
+  remote_user: root
+  gather_facts: False
+
+  tasks:
+    - include: tasks/cassandra-start.yml

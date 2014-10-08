@@ -16,7 +16,5 @@ On successful execution you'll be left with four Cassandra nodes:
 
 Each of the the nodes is added to the hosts file locally. Each node is also added to the hosts file on each node.
 
-The cassandra replication factor is set to four so that data makes it to every node.
-
 To run the playbook: ansible-playbook -K -i ansible_hosts digital-ocean-playbook.yml
 
